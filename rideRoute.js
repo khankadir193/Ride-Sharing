@@ -1,4 +1,6 @@
 const findNearestDriver = require("./findNearestDriver");
+// const run  =  require('./dbConnections/connection');
+const connectMongoDB =  require('./dbConnections/dbConnections');
 
 const rideRoutes = [
   {
@@ -8,6 +10,9 @@ const rideRoutes = [
       const riderId = 1;
       // console.log("request....?", request.payload);
       const response = await findNearestDriver(request.payload,riderId);
+
+      // const con = await run();
+      const result = await connectMongoDB();
 
       return h.response(response).code(200);
     },
